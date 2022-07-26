@@ -1,6 +1,7 @@
 package spring.empty.spring5webapp.model;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -12,12 +13,11 @@ public class Author {
     private String firstName;
     private String lastName;
     @ManyToMany(mappedBy = "authors" )
-    private Set<Book> books;
+    private Set<Book> books = new HashSet<>();
 
-    public Author(String firstName, String lastName, Set<Book> books) {
+    public Author(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.books = books;
     }
 
     public Author() {
@@ -61,7 +61,6 @@ public class Author {
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", books=" + books +
                 '}';
     }
 
